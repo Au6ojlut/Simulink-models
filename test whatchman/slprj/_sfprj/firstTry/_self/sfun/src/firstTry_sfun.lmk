@@ -1,0 +1,44 @@
+CC     = "H:\MatLab2013\sys\lcc64\lcc64\bin\lcc64.exe"
+LD     = "H:\MatLab2013\sys\lcc64\lcc64\bin\lcclnk64.exe"
+LIBCMD = "H:\MatLab2013\sys\lcc64\lcc64\bin\lcclib64.exe"
+CFLAGS = -dll -noregistrylookup  -c -Zp8 -DLCC_WIN64 -DMATLAB_MEX_FILE -DMX_COMPAT_32 -nodeclspec 
+LDFLAGS = -s -dll -L"H:\MatLab2013\sys\lcc64\lcc64\lib64" -entry LibMain -map sfun.map 
+LIBFLAGS = 
+
+OBJECTS = \
+	"firstTry_sfun.obj"\
+	"c1_firstTry.obj"\
+	"c2_firstTry.obj"\
+	"c5_firstTry.obj"\
+	"firstTry_sfun_registry.obj"\
+	"lccstub.obj"\
+	"firstTry_sfun.def"\
+	"H:\MatLab2013\stateflow\c\mex\lib\win64\sfc_mexlcc64.lib"\
+	"H:\MatLab2013\stateflow\c\debugger\lib\win64\sfc_debuglcc64.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libmwblas.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libmx.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libmex.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libmat.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libfixedpoint.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libut.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libmwmathutil.lib"\
+	"H:\MatLab2013\extern\lib\win64\microsoft\libemlrt.lib"\
+	"H:\MatLab2013\lib\win64\libippmwipt.lib"\
+
+INCLUDE_PATH= -I"H:\MatLab2013\sys\lcc64\lcc64\include64"  -I"H:\MatLab2013\extern\include"  -I"H:\MatLab2013\simulink\include"  -I"H:\MatLab2013\rtw\c\src"  -I"H:\MatLab2013\stateflow\c\mex\include"  -I"H:\MatLab2013\stateflow\c\debugger\include"  -I"H:\MatLab2013\toolbox\stateflow\src\sf_runtime\export\include\sf_runtime" 
+ 
+
+firstTry_sfun.mexw64 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o firstTry_sfun.mexw64 @firstTry_sfun.lmko
+firstTry_sfun.obj :	"firstTry_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "firstTry_sfun.c"
+c1_firstTry.obj :	"c1_firstTry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c1_firstTry.c"
+c2_firstTry.obj :	"c2_firstTry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c2_firstTry.c"
+c5_firstTry.obj :	"c5_firstTry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c5_firstTry.c"
+firstTry_sfun_registry.obj :	"firstTry_sfun_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "firstTry_sfun_registry.c"
+lccstub.obj :	"H:\MatLab2013\sys\lcc64\lcc64\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "H:\MatLab2013\sys\lcc64\lcc64\mex\lccstub.c"
